@@ -1,0 +1,19 @@
+.dropdown-ctn {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    font-weight: normal;
+    background-color: rgb(197, 196, 196);
+    height: fit-content;
+    width: 150px;
+    border: 1px solid #ffffff;
+
+    >.option-ctn {
+        padding: .2em .5em;
+        cursor: pointer;
+
+        &:hover {
+            background-color: #bdbdbd;
+        }
+    }
+}

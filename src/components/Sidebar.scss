@@ -1,0 +1,130 @@
+@import '../variables.scss';
+
+$sidebar-content-width: 100%;
+
+
+.sidebar {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    padding: 0 2em;
+    border-right: 1px solid lightgrey;
+    // border-right: 25px solid #EDEFF7;
+    border-top: 0px solid #EDEFF7;
+    overflow-y: auto;
+    // outline: 1px solid red;
+
+
+
+    &_btn-ctn {
+        display: flex;
+        flex-direction: column;
+        margin-top: 2em;
+        gap: .5em;
+        padding: .5em
+    }
+
+    >.sidebar-content {
+        right: calc($sidebar-content-width * -1.020);
+        top: 0;
+        width: $sidebar-content-width;
+        height: 100vh;
+        gap: .4em;
+        display: flex;
+        flex-direction: column;
+
+        >h4 {
+            text-align: center;
+            border-bottom: 1px solid grey;
+        }
+
+        .sidebar-content__item {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            min-height: 2em;
+            background-color: $background-secondary;
+            width: 90%;
+            padding: .4em 1em;
+            font-size: smaller;
+            border-radius: 5px;
+            // color: white;
+            text-transform: uppercase;
+            outline: 1px solid transparent;
+
+            &:hover {
+                background-color: white;
+                outline: 1px solid #000000;
+                transition: all ease-in-out 150ms;
+            }
+
+            &:active {
+                outline: 2px solid #bdcafa
+            }
+        }
+
+    }
+}
+
+.caret-icon {
+    &.open {
+        transform: rotate(0deg);
+        transition: 250ms ease-in-out all;
+    }
+    &.closed {
+        transform: rotate(180deg);
+        transition: 250ms ease-in-out all;
+    }
+}
+
+/* Styling for WebKit based browsers (Chrome, Safari) */
+::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    // border: 1px solid lightgrey;
+      background-color: lightgrey;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+      background-color: lightgrey;
+  }
+  
+  /* Styling for Firefox */
+  /* Note: Firefox does not support customizing the track color */
+  @-moz-document url-prefix() {
+    scrollbar {
+      width: 5px;
+    }
+  
+    scrollbar-thumb {
+        background-color: lightgrey;
+    }
+    
+    scrollbar-thumb:hover {
+        background-color: lightgrey;
+    }
+  }
+  
+  /* Styling for Internet Explorer and Edge */
+  /* Note: Microsoft Edge Legacy (older versions) support the prefixed version ::-ms-scrollbar */
+  @supports (-ms-overflow-style: none) {
+    /* Microsoft Edge and Internet Explorer */
+    scrollbar {
+      width: 5px;
+    }
+  
+    scrollbar-thumb {
+      background-color: lightgrey;
+    }
+  
+    scrollbar-thumb:hover {
+      background-color: lightgrey;
+    }
+  }
+  

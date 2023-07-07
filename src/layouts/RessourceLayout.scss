@@ -1,0 +1,14 @@
+.ressource-layout {
+    // z-index: 0;
+
+    >.header-layout {
+        height: auto;
+        display: flex;
+        justify-content: center;
+    }
+
+    >.ressource-outlet {
+        height: auto
+    }
+
+}
