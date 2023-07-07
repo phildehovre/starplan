@@ -6,7 +6,7 @@ import {
   faPlus,
 } from "@fortawesome/free-solid-svg-icons";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { postEvents, useDeleteEvent } from "../util/db";
+import { useDeleteEvent } from "../util/db";
 import Spinner from "./Spinner";
 import { selectedCampaignContext } from "../contexts/SelectedCampaignContext";
 import { postEventsToGoogle } from "../apis/googleCalendar";
@@ -63,7 +63,7 @@ function TableHeader(props: {
     if (selectedRows.length === 0) {
       selectedEvents = ressource?.data?.data;
     } else {
-      selectedEvents = ressource?.data?.data.filter((event: any) => {
+      selectedEvents = ressource?.data?.data.filter(() => {
         return selectedRows.includes(ressource?.data?.data.id);
       });
     }
@@ -76,14 +76,14 @@ function TableHeader(props: {
     }
   }, [events]);
 
-  const templateKeys = [
-    "description",
-    "position",
-    "category",
-    "entity_responsible",
-    "type",
-  ];
-  const campaignKeys = [...templateKeys, "completed"];
+  // const templateKeys = [
+  //   "description",
+  //   "position",
+  //   "category",
+  //   "entity_responsible",
+  //   "type",
+  // ];
+  // const campaignKeys = [...templateKeys, "completed"];
   const typeOfEvent =
     ressourceType === "template" ? "template_events" : "campaign_events";
 
@@ -184,8 +184,8 @@ function TableHeader(props: {
           onClick={() =>
             postEventsToGoogle(
               mapSelectedEvents(),
-              ressource?.data?.data[0].targetDate,
-              session
+              ressource?.data?.data[0].targetDate
+              // session
             )
           }
         >

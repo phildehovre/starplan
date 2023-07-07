@@ -15,7 +15,7 @@ function Cell(props: {
   eventId?: any;
 }) {
   const [isEditing, setIsEditing] = React.useState(false);
-  const [data, setData] = React.useState<any>();
+  // const [data, setData] = React.useState<any>();
   const { register, handleSubmit, setValue } = useForm();
 
   const { value, label, onSubmit, setEventId, eventId } = props;
@@ -58,7 +58,8 @@ function Cell(props: {
   //   console.log(label === "position" ? value : null);
 
   const handleDateChange = (e: any) => {
-    const [position, position_units, targetDate] = value;
+    const targetDate = value[2];
+    console.log();
     const differenceInDays = dayjs(new Date(targetDate)).diff(
       new Date(e.target.value),
       "day"

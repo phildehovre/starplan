@@ -3,11 +3,7 @@ import { useCampaignEvents, useTemplateEvents } from "../util/db";
 import { useParams } from "react-router";
 import { useSession } from "@supabase/auth-helpers-react";
 import Table from "./Table";
-import {
-  convertPositionToDate,
-  convertTemplatePositionForSorting,
-} from "../utils/helpers";
-import { Select } from "@radix-ui/react-select";
+import { convertTemplatePositionForSorting } from "../utils/helpers";
 import { selectedCampaignContext } from "../contexts/SelectedCampaignContext";
 
 function Ressource() {
@@ -76,10 +72,8 @@ function Ressource() {
         return {
           ...event,
           targetDate: campaignData?.targetDate,
-          // position: convertPositionToDate(
           //   event.position,
           //   event.position_units,
-          //   campaignData?.targetDate
           // ),
         };
       });

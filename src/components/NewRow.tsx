@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import dayjs from "dayjs";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
@@ -47,13 +47,9 @@ function NewRow(props: {
 
   const { ressource, ressourceType, phaseName, phaseNumber } = props;
 
-  const {
-    handleSubmit,
-    formState: { errors },
-    register,
-    setValue,
-    reset,
-  } = useForm({ resolver: yupResolver(schema) });
+  const { handleSubmit, register, reset } = useForm({
+    resolver: yupResolver(schema),
+  });
   const queryClient = useQueryClient();
   const session = useSession();
   const params = useParams();

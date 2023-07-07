@@ -1,8 +1,7 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import Row from "./Row";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faArrowDown,
   faCaretDown,
   faCaretUp,
   faEllipsis,
@@ -35,7 +34,6 @@ function Phase(props: {
   const [modalPrompt, setModalPrompt] = React.useState("");
   const [showModal, setShowModal] = React.useState(false);
   const [showPhase, setShowPhase] = React.useState(1);
-  const contentRef = useRef();
 
   const {
     name: phaseName,
@@ -94,9 +92,7 @@ function Phase(props: {
   const deletePhase = () => {
     deletePhaseMutation
       .mutateAsync()
-      .then((res) =>
-        queryClient.invalidateQueries([`${ressourceType}_events`])
-      );
+      .then(() => queryClient.invalidateQueries([`${ressourceType}_events`]));
   };
 
   const duplicatePhaseMutation = useMutation(async () => {
@@ -115,9 +111,7 @@ function Phase(props: {
   const duplicatePhase = () => {
     duplicatePhaseMutation
       .mutateAsync()
-      .then((res) =>
-        queryClient.invalidateQueries([`${ressourceType}_events`])
-      );
+      .then(() => queryClient.invalidateQueries([`${ressourceType}_events`]));
   };
 
   const handlePhaseDisplay = () => {

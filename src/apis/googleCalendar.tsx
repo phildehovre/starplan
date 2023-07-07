@@ -1,6 +1,5 @@
-import { supabase } from "../App";
 import dayjs from "dayjs";
-import { useQuery, QueryFunctionContext } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { backOff } from "exponential-backoff";
 
 export async function deleteCalendarEvent(id: string, session: any) {
@@ -45,8 +44,7 @@ export async function formatAndUpdateEvent(
   // ===== PASS THE USER SESSION AS SECOND PARAMETER:
   session: any
 ) {
-  const { category, completed, description, position, id, type, event_id } =
-    eventObj;
+  const { category, description, position, type, event_id } = eventObj;
 
   const start = dayjs(targetDate).subtract(position, "days");
   const end = dayjs(targetDate).subtract(position, "days").add(1, "hour");
@@ -111,7 +109,7 @@ export function useHolidays(region: any, session: any) {
 
 export async function postEventsToGoogle(
   events: any[],
-  targetDate: Date,
+  // targetDate: Date,
   session: any
 ) {
   for (let i = 0; i < events.length; i++) {
@@ -139,11 +137,8 @@ async function formatAndPostEvent(
   targetDate: Date,
   session: any
 ) {
-  const { category, completed, description, position, id, type, event_id } =
-    eventObj;
+  const { category, description, type, event_id } = eventObj;
 
-  //   const start = dayjs(targetDate).subtract(position, "days");
-  //   const end = dayjs(targetDate).subtract(position, "days").add(1, "hour");
   const start = dayjs(targetDate).toISOString();
   const end = dayjs(targetDate).add(1, "hour").toISOString();
 

@@ -1,8 +1,6 @@
-import React from "react";
 import "./NewPhase.scss";
 import { FontAwesomeIcon as FontawesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import UpdatableInput from "./UpdatableInput";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "../App";
 import Spinner from "./Spinner";

@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { CampaignObj } from "../types/types";
-import { useParams } from "react-router";
 import { useCampaign } from "../util/db";
 
 export const selectedCampaignContext =
@@ -18,10 +16,7 @@ function SelectedCampaignContextProvider(props: { children: React.ReactNode }) {
   >(undefined);
   const [campaignData, setCampaignData] = useState<any>(undefined);
 
-  const { data, isLoading, error } = useCampaign(
-    selectedCampaignId,
-    !!selectedCampaignId
-  );
+  const { data } = useCampaign(selectedCampaignId, !!selectedCampaignId);
 
   useEffect(() => {
     if (data?.data) {

@@ -14,7 +14,7 @@ function ErrorNotification(props: {
   show: boolean;
   setShow: React.Dispatch<React.SetStateAction<boolean>>;
 }): JSX.Element {
-  const { ressourceType, ressource, show, setShow } = props;
+  const { ressource, show, setShow } = props;
 
   const [type, setType] = React.useState<string>("warning");
   const [additionnalContent, setAdditionnalContent] =

@@ -1,5 +1,4 @@
 import { useSession } from "@supabase/auth-helpers-react";
-import React from "react";
 
 function GetGoogleEvents() {
   const session = useSession();
@@ -21,7 +20,7 @@ function GetGoogleEvents() {
     },
   })
     .then((response) => response.json())
-    .then((data) => {
+    .then(() => {
       // Process the response data
       // console.log(data);
     })

@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { useSession } from "@supabase/auth-helpers-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisV } from "@fortawesome/free-solid-svg-icons";
-import { set, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useTemplate, useTemplateEvents } from "../util/db";
@@ -33,47 +33,40 @@ const schema = yup.object().shape({
 });
 
 function RessourceHeader(props: any) {
-  const [showEditDescriptionModal, setShowEditDescriptionModal] =
-    React.useState(false);
+  // const [showEditDescriptionModal, setShowEditDescriptionModal] =
+  //   React.useState(false);
   const [showNewCampaignModal, setShowNewCampaignModal] = React.useState(false);
   const [showDropdown, setShowDropdown] = React.useState(false);
   const [showNotification, setShowNotification] = React.useState(false);
-  const [targetDate, setTargetDate] = React.useState<Date>(
-    dayjs().add(1, "month").toDate()
-  );
+  const [targetDate, setTargetDate] = React.useState<any>();
   const { ressource, ressourceType } = props;
   const queryClient = useQueryClient();
 
   const navigate = useNavigate();
   const session = useSession();
-  const {
-    handleSubmit,
-    formState: { errors },
-  } = useForm({ resolver: yupResolver(schema) });
+  const { handleSubmit } = useForm({ resolver: yupResolver(schema) });
 
   const { selectedTemplateId, setSelectedTemplateId } = React.useContext(
     selectedTemplateContext
   );
-  const { selectedCampaignId, setSelectedCampaignId } = React.useContext(
-    selectedCampaignContext
-  );
+  const { setSelectedCampaignId } = React.useContext(selectedCampaignContext);
 
   const { data: campaignTemplateData } = useTemplate(
     ressource?.data?.template_id,
     ressource?.data?.template_id ? true : false
   );
-  const {
-    data: templateEventsData,
-    isLoading,
-    error,
-  } = useTemplateEvents(selectedTemplateId);
+  const { data: templateEventsData } = useTemplateEvents(selectedTemplateId);
 
   const ressourceId =
     ressourceType === "template"
       ? ressource?.data?.template_id
       : ressource?.data?.campaign_id;
 
-  const ressourceKey = ressourceType === "template" ? "template" : "campaign";
+  useEffect(() => {
+    setTargetDate(dayjs().add(1, "month").toDate());
+  }, []);
+
+  // const ressourceKey = ressourceType === "template" ? "template" : "campaign";
 
   // ===================== New campaign from template =====================
 
@@ -151,14 +144,14 @@ function RessourceHeader(props: any) {
       queryClient.invalidateQueries([`${ressourceType}s`]);
       navigate(`/dashboard/${ressourceType}`);
     });
-    setShowEditDescriptionModal(false);
+    // setShowEditDescriptionModal(false);
   };
 
   // =================== Handle Notification display ===================
 
-  const [hasFalsyValue, keysWithFalsyValues] = checkFalsyValuesInEvents(
+  const keysWithFalsyValues = checkFalsyValuesInEvents(
     templateEventsData?.data
-  );
+  )[1];
   // ======== Remove notification when template events are updated ========
 
   useEffect(() => {

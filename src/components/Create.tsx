@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import Table from "./Table";
+import React from "react";
 import { useParams } from "react-router-dom";
 import "./Create.scss";
 import { useNavigate } from "react-router-dom";
@@ -25,9 +24,7 @@ function Create(props: { ressourceType?: string }) {
   const [showModal, setShowModal] = React.useState(false);
   const [name, setName] = React.useState("");
 
-  const { setSelectedTemplateId, selectedTemplateId } = React.useContext(
-    selectedTemplateContext
-  );
+  const { setSelectedTemplateId } = React.useContext(selectedTemplateContext);
   const { setSelectedCampaignId } = React.useContext(selectedCampaignContext);
 
   const handleCreateRessource = (type: string | undefined) => {
@@ -51,7 +48,7 @@ function Create(props: { ressourceType?: string }) {
           navigate(`/dashboard/campaign/${ressourceId}`);
         }
       })
-      .then((res) => {
+      .then(() => {
         if (type === "template") {
           console.log("is triggered?");
           addInitialEvent

@@ -1,10 +1,8 @@
 import React, { Dispatch, SetStateAction, useEffect } from "react";
 import Row from "./Row";
 import "./Table.scss";
-import TableHeader from "./TableHeader";
 import { supabase } from "../App";
 import Phase from "./Phase";
-import ErrorNotification from "./ErrorNotification";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
@@ -41,10 +39,7 @@ function Table(props: {
   // const [selectedRows, setSelectedRows] = React.useState<any[]>([]);
   const [phases, setPhases] = React.useState<any>({});
 
-  const {
-    register,
-    formState: { errors },
-  } = useForm({ resolver: yupResolver(schema) });
+  const { register } = useForm({ resolver: yupResolver(schema) });
 
   const { selectedCampaignId } = React.useContext(selectedCampaignContext);
   const { data: campaignData } = useCampaign(

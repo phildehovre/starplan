@@ -91,7 +91,7 @@ function UpdatableInput(props: {
         //     queryKey: [`${ressourceType}_events`, ressourceId],
         //   });
         // })
-        .then((res) =>
+        .then(() =>
           queryClient.invalidateQueries({
             queryKey: [ressourceType, { [`${ressourceType}_id`]: ressourceId }],
           })

@@ -1,4 +1,4 @@
-import React, { SetStateAction, useEffect } from "react";
+import React, { useEffect } from "react";
 import "./Sidebar.scss";
 import { useNavigate } from "react-router";
 import Create from "./Create";

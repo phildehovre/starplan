@@ -1,4 +1,4 @@
-import { TaskObj, TemplateObj } from "../types/types";
+import { TaskObj } from "../types/types";
 import { v4 as uuidv4 } from "uuid";
 import dayjs from "dayjs";
 
@@ -61,7 +61,7 @@ export function convertTemplatePositionForSorting(event: {
     months: 30,
   };
 
-  const { position = 1, position_units = "days_before" } = event;
+  const { position = 1 } = event;
   const [unit, beforeOrAfter] = event.position_units
     ? event.position_units.split("_")
     : ["days", "before"];
@@ -145,7 +145,7 @@ export const formatEventDate = (
 };
 
 export const formatDaysToDaysAndWeek = (length: number) => {
-  let countdown, weeks, days;
+  let countdown;
   if (length % 7 === 0) {
     if (length / 7 === 1) {
       countdown = "1 week";
